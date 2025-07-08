@@ -1,0 +1,79 @@
+:root {
+    --primary-color: #1f1d1d;
+    --secondary-color: #cecdcd;
+    --sub-title-color: #666666;
+    --challenger-primary-color: #000000;
+}
+
+@keyframes opacityLoop{
+    0% {
+        opacity: 100%;
+      }
+      25% {
+        opacity: 75%;
+      }
+      50% {
+        opacity: 50%;
+      }
+      75% {
+        opacity: 25%;
+      }
+      100% {
+        opacity: 0%;
+      }
+    
+}
+
+.container-body {
+    background-color: var(--primary-color);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container-loading {
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-loading__title {
+    color: var(--secondary-color);
+    font-family: "Determination Sans";
+    font-size: 100px;
+    text-shadow: 2px 2px 4px var(--secondary-color);
+    user-select: none;
+}
+
+.container-loading__sub-title {
+    color: var(--sub-title-color);
+    font-family: "Determination Sans";
+    user-select: none;
+    cursor: pointer;
+    font-size: 30px;
+    line-height: 10px;
+    animation: opacityLoop cubic-bezier(.46,.58,.7,.15) 500ms infinite;
+    letter-spacing: 6px;
+}
+
+.main-challenger {
+    position: absolute;
+    visibility: none;
+    background-color: var(--challenger-primary-color);
+    width: 50%;
+    height: 75%;
+    /* ver dps */
+    inset: 0; 
+    margin: auto;
+    border: 10px solid var(--secondary-color);
+}
