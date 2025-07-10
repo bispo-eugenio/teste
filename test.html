@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/fonts.css">
+    <title>Teste</title>
+</head>
+<body>
+    <style>
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        span{
+            font-family: "Determination Sans";
+            display: inline-block;
+            font-size: 50px;
+            animation: test 1s;
+            animation-delay: calc(.1s * var(--i));
+            letter-spacing: 4px;
+            word-spacing: 5px;
+        }
+        @keyframes test {
+            0%, 40%, 100%{
+                transform: translateY(0);
+            }
+            20% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+    <div class="container">
+        <p class="test" hidden>Lorem ipsum dolor sit amet.
+        </p>
+    </div>
+
+    <script>
+        let container =  document.querySelector(".container")
+        let letterBox = document.getElementsByClassName("test")
+        letterBox = letterBox.item(0).textContent.split("")
+        for (let joo = 0; joo<letterBox.length; joo++){
+            let element = document.createElement("span");
+            element.textContent = letterBox[joo]
+            element.style = `--i:${joo}`
+            if (element.textContent.trim().length == 0){
+                element.textContent = "\u00A0"
+            }
+            container.appendChild(element)
+        }
+    </script>
+</body>
+</html>
