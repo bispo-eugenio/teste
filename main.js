@@ -82,8 +82,6 @@ function submitValue(){
         else
             value = transformInNumber(value)
         result[index] = value;
-        console.log(typeof(result))
-        console.log(typeof(result[0]))
         for (let i = 0; i < allElementSpan.length; i++){
             let element = document.querySelector(".main-challenger__box-img--dialog-cloud-text-letter")
             element.remove()

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>desafio</title>
+    <title>Desafio Ford</title>
 </head>
 <body>
     <header></header>
@@ -30,27 +30,46 @@
      * @param {boolean} option true para valores de ponto flutuante e falso para valores inteiro.
     */
     function inputValue(text, option = true) {
-        let variable = 0;
+        let variable = "";
         if(option == true){
+            //Consertar
             do {
-                variable = parseFloat(prompt(text));
-                if (isNaN(variable)){
-                    alert("O valor não é um número ou campo está vazio.")
-                }
+                variable = prompt(text);
+                variable = variable.replace(",", ".")
+                if (variable.match(/[a-zA-Z-]/) == null) 
+                    variable = NaN 
+                else
+                    variable = parseFloat(variable)
+                validatedValue(variable)
             } while(isNaN(variable));
         }
         else if (option == false){
             do {
-                variable = parseInt(prompt(text));
-                if (isNaN(variable)){
-                    alert("O valor não é um número ou campo está vazio.")
-                }
-            } while(isNaN(variable));
+                variable = prompt(text);
+                variable = variable.replace(",", ".");
+                variable = parseInt(variable);
+                validatedValue(variable, true)
+            } while(isNaN(variable) && variable > 1);
         }
         else {
             console.error("Valor inválido");
         }
         return variable;
+    }
+
+    /**
+     * Valida o valor passado como parâmetro.
+     * @param {number | string} value valor que vai ser validado.
+     * @param {boolean} option verificação para validar números maior que 1.
+    */
+    function validatedValue(value, option = false) {
+        if (value == "" && value.length == 0) {
+            alert("Campo vazio.")
+        } else if (isNaN(value)){
+            alert("O valor não é um número")
+        } else if (value < 1 && option == true){
+            alert("Digite um valor maior que zero.")
+        }
     }
 
     /**
@@ -61,11 +80,11 @@
     function isPositivoNumber(num){
         if (num >= 0)
             return true;
-        else if (isNaN(num))
-            alert("Digite alguma coisa")
         alert("O valor não é um número positivo.")
         return false;
     }
+
+    //====================Variáveis====================
 
     const arr = [0]; // array para pegar o menor número.
     let averangeGasStationPrice = 0; //Media de preço.
@@ -75,6 +94,7 @@
     let avgCosume = 0; //Media de consumo.
     let quantityGasStation = 0; //Quantidade de posto.
     let valueGasStation = 0 //Preço de cada posto.
+    let flag = true; // Bandeira de validação
 
     //Entrada e validação da distância percorrida
     while(true){
@@ -132,11 +152,11 @@
     //Gasto diário
     const dayCost = 2*(fuelConsumption*minimumCostGasStation)
 
-    //Escrevendo no HTML    
+    //Passando para o HTML    
     writeLine(`O cosumo necessário é ${fuelConsumption.toFixed(2)} litros`);
-    writeLine(`O menor valor pesquisado é R$ ${minimumCostGasStation.toFixed(2)}`);
-    writeLine(`A média dos valores pesquisado é R$ ${averangeGasStationPrice.toFixed(2)}`);
-    writeLine(`O gasto diário (ida e volta) é R$ ${dayCost.toFixed(2)}`)
+    writeLine(`O menor valor pesquisado é ${minimumCostGasStation.toLocaleString("pt-br", {style: "currency", currency:"BRL"})}`);
+    writeLine(`A média dos valores pesquisado é ${averangeGasStationPrice.toLocaleString("pt-br", {style: "currency", currency:"BRL"})}`);
+    writeLine(`O gasto diário (ida e volta) é ${dayCost.toLocaleString("pt-br", {style: "currency", currency:"BRL"})}`)
     </script>
 </body>
 </html>
