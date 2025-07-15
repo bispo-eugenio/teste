@@ -106,14 +106,10 @@
   gap: 1px;
 }
 .main-challenger__box-img--dialog-cloud-text-letter {
-  display: block;
-  height: 43px;
-  max-height: max-content;
   font-family: "Determination Mono";
-  font-size: 18px;
+  font-size: 16px;
   color: black;
   user-select: none;
-  
 }
 
 .main-challenger__box-img--sans-gif {
